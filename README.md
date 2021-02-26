@@ -2,5 +2,5 @@
 우아한테크코스 과정 중 진행한 미션이나 내용을 기록하는 공간입니다.
 
 - racing-car
-- enum-exception
 - lotto
+- enum-exception 연습
