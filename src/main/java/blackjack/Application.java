@@ -27,10 +27,25 @@ public class Application {
     }
 
     private static void turnForPlayer(BlackjackGame blackjackGame, Participant player) {
-        while (player.isAbleToTake() && InputView.requestOneMoreCard(player.getName())) {
+        while (checkCondition(player)) {
             blackjackGame.turnFor(player);
             OutputView.printPlayerCards(player);
         }
+    }
+
+    private static boolean checkCondition(Participant player) {
+        if (player.isAbleToTake()) {
+            return requestTakingCard(player);
+        }
+        return false;
+    }
+
+    private static boolean requestTakingCard(Participant player) {
+        if (InputView.requestOneMoreCard(player.getName())) {
+            return true;
+        }
+        player.stay();
+        return false;
     }
 
     private static void printFinalView(BlackjackGame blackjackGame) {

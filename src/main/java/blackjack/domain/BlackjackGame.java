@@ -7,7 +7,6 @@ import blackjack.domain.gamer.Players;
 import blackjack.domain.utils.CardDeck;
 import blackjack.dto.ProcessDto;
 import blackjack.dto.ResultDto;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +16,7 @@ public class BlackjackGame {
     private final Participant dealer;
     private final CardDeck cardDeck;
 
-    public BlackjackGame(final Map<String,String> participantsInfo, CardDeck cardDeck) {
+    public BlackjackGame(final Map<String, String> participantsInfo, CardDeck cardDeck) {
         List<Player> playersValue = getPlayerList(participantsInfo);
         this.dealer = new Dealer();
         this.players = new Players(playersValue);
@@ -32,7 +31,7 @@ public class BlackjackGame {
         initGame();
     }
 
-    private List<Player> getPlayerList(final Map<String,String> participantsInfo) {
+    private List<Player> getPlayerList(final Map<String, String> participantsInfo) {
         List<Player> playersValue = new ArrayList<>();
 
         for (Map.Entry<String, String> info : participantsInfo.entrySet()) {
@@ -54,16 +53,19 @@ public class BlackjackGame {
     }
 
     public List<Participant> getPlayers() {
-       return players.getUnmodifiableList();
+        return players.getUnmodifiableList();
     }
 
-    public void turnForDealer(){
-        turnFor(dealer);
-    }
-    public void turnFor(Participant participant) {
-        if (participant.isAbleToTake()) {
-            participant.takeCard(cardDeck.pop());
+    public void turnForDealer() {
+        if (dealer.isAbleToTake()) {
+            turnFor(dealer);
+            return;
         }
+        dealer.stay();
+    }
+
+    public void turnFor(Participant participant) {
+        participant.takeCard(cardDeck.pop());
     }
 
     public ResultDto getResultDto() {

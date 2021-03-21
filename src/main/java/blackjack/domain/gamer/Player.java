@@ -5,6 +5,7 @@ import blackjack.domain.card.Cards;
 import blackjack.domain.card.Score;
 import blackjack.domain.state.Hit;
 import blackjack.domain.state.State;
+import blackjack.domain.state.Stay;
 import java.util.Collections;
 
 public class Player implements Participant {
@@ -81,6 +82,11 @@ public class Player implements Participant {
     @Override
     public int sizeOfCards() {
         return state.size();
+    }
+
+    @Override
+    public void stay() {
+        this.state = new Stay(state.getCards());
     }
 
 }
