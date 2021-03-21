@@ -16,7 +16,7 @@ public class DealerTest {
     @Test
     @DisplayName("카드 지급")
     void takeCard() {
-        Participant dealer = new Dealer();
+        Playable dealer = new Dealer();
         dealer.takeCard(Card.from(Suits.DIAMOND, Denominations.KING));
 
         assertThat(dealer.sizeOfCards()).isEqualTo(1);
@@ -28,7 +28,7 @@ public class DealerTest {
         List<Card> cards = Arrays.asList(
             Card.from(Suits.DIAMOND, Denominations.KING),
             Card.from(Suits.CLOVER, Denominations.KING));
-        Participant dealer = new Dealer(new Cards(cards));
+        Playable dealer = new Dealer(new Cards(cards));
 
         assertThat(dealer.isAbleToTake()).isFalse();
     }

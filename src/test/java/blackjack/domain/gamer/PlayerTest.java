@@ -14,7 +14,7 @@ public class PlayerTest {
     @Test
     @DisplayName("생성")
     void create() {
-        Participant player = new Player("john");
+        Playable player = new Player("john");
 
         assertThat(player.getName()).isEqualTo("john");
     }
@@ -24,14 +24,14 @@ public class PlayerTest {
     void create2() {
         final Cards cards = new Cards(Collections.emptyList());
 
-        Participant player = new Player("sarah", cards);
+        Playable player = new Player("sarah", cards);
         assertThat(player.getName()).isEqualTo("sarah");
     }
 
     @Test
     @DisplayName("카드 22일 경우 받을 수 있는지 조건 확인")
     void isNotAbleToTake_true() {
-        Participant player = new Player();
+        Playable player = new Player();
         player.takeCard(Card.from(Denominations.KING, Suits.CLOVER));
         player.takeCard(Card.from(Denominations.KING, Suits.CLOVER));
         player.takeCard(Card.from(Denominations.TWO, Suits.CLOVER));
@@ -42,7 +42,7 @@ public class PlayerTest {
     @Test
     @DisplayName("카드 21일 경우 받을 수 있는지 조건 확인")
     void isNotAbleToTake_false() {
-        Participant player = new Player();
+        Playable player = new Player();
         player.takeCard(Card.from(Denominations.KING, Suits.CLOVER));
         player.takeCard(Card.from(Denominations.KING, Suits.CLOVER));
         player.takeCard(Card.from(Denominations.ACE, Suits.CLOVER));

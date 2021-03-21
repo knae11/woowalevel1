@@ -1,7 +1,7 @@
 package blackjack.domain;
 
 import blackjack.domain.gamer.Dealer;
-import blackjack.domain.gamer.Participant;
+import blackjack.domain.gamer.Playable;
 import blackjack.domain.gamer.Player;
 import blackjack.domain.gamer.Players;
 import blackjack.domain.utils.CardDeck;
@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class BlackjackGame {
     private final Players players;
-    private final Participant dealer;
+    private final Playable dealer;
     private final CardDeck cardDeck;
 
     public BlackjackGame(final Map<String, String> participantsInfo, CardDeck cardDeck) {
@@ -24,7 +24,7 @@ public class BlackjackGame {
         initGame();
     }
 
-    public BlackjackGame(final Participant dealer, Players players, CardDeck cardDeck) {
+    public BlackjackGame(final Playable dealer, Players players, CardDeck cardDeck) {
         this.dealer = dealer;
         this.players = players;
         this.cardDeck = cardDeck;
@@ -52,7 +52,7 @@ public class BlackjackGame {
         return new ProcessDto(players, dealer);
     }
 
-    public List<Participant> getPlayers() {
+    public List<Playable> getPlayers() {
         return players.getUnmodifiableList();
     }
 
@@ -64,7 +64,7 @@ public class BlackjackGame {
         dealer.stay();
     }
 
-    public void turnFor(Participant participant) {
+    public void turnFor(Playable participant) {
         participant.takeCard(cardDeck.pop());
     }
 

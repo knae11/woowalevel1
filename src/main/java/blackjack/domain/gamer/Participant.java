@@ -3,24 +3,67 @@ package blackjack.domain.gamer;
 import blackjack.domain.card.Card;
 import blackjack.domain.card.Cards;
 import blackjack.domain.card.Score;
+import blackjack.domain.state.Hit;
+import blackjack.domain.state.State;
+import blackjack.domain.state.Stay;
 
-public interface Participant {
-    boolean isAbleToTake();
+public abstract class Participant implements Playable {
+    private final Name name;
+    private final BettingMoney bettingMoney;
+    private State state;
 
-    String getName();
+    public Participant(String name, Cards cards, BettingMoney bettingMoney) {
+        this.name = new Name(name);
+        this.bettingMoney = bettingMoney;
+        this.state = new Hit(cards);
+    }
 
-    void takeCard(Card card);
+    @Override
+    public String getName() {
+        return this.name.toString();
+    }
 
-    boolean isBlackjack();
+    @Override
+    public void takeCard(Card card) {
+        state = state.takeCard(card);
+    }
 
-    boolean isBurst();
+    @Override
+    public boolean isBlackjack() {
+        return state.isBlackjack();
+    }
 
-    Score finalScore();
+    @Override
+    public boolean isBurst() {
+        return state.isBurst();
+    }
 
-    Cards getCards();
+    @Override
+    public Score finalScore() {
+        return state.calculateScore();
+    }
 
-    int sizeOfCards();
+    @Override
+    public Cards getCards() {
+        return state.getCards();
+    }
 
-    void stay();
+    @Override
+    public int sizeOfCards() {
+        return state.size();
+    }
+
+    @Override
+    public void stay() {
+        this.state = new Stay(state.getCards());
+    }
+
+    public BettingMoney getBettingMoney() {
+        return bettingMoney;
+    }
+
+    public State getState() {
+        return state;
+    }
 
 }

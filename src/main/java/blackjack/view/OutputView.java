@@ -3,10 +3,9 @@ package blackjack.view;
 import blackjack.domain.Outcome;
 import blackjack.domain.card.Cards;
 import blackjack.domain.gamer.Dealer;
-import blackjack.domain.gamer.Participant;
+import blackjack.domain.gamer.Playable;
 import blackjack.dto.ProcessDto;
 import blackjack.dto.ResultDto;
-
 import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -27,7 +26,7 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printPlayerCards(Participant player) {
+    public static void printPlayerCards(Playable player) {
         final String cards = String.join(DELIMITER, player.getCards().getUnmodifiableCardNames());
 
         System.out.printf(CARDS_RESULT_FORMAT, player.getName(), cards);

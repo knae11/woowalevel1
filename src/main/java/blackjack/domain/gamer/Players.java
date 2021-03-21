@@ -19,7 +19,7 @@ public class Players {
         this.players = new ArrayList<>(players);
     }
 
-    public List<Participant> getUnmodifiableList() {
+    public List<Playable> getUnmodifiableList() {
         return Collections.unmodifiableList(players);
     }
 

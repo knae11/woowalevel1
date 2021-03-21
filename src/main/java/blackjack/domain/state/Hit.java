@@ -24,6 +24,4 @@ public class Hit extends Running {
         return new Hit(cards);
     }
 
-
-
 }
