@@ -1,5 +1,6 @@
 # 학습내용
 
+- 페어프로그래밍
 - 객체지향
 - [TDD](https://nauni.tistory.com/141?category=913481)
 - MVC 패턴
