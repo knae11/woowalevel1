@@ -1,6 +1,11 @@
 # 학습내용
 
 - 상속, 인터페이스
+- [블랙잭 학습로그](https://nauni.tistory.com/164?category=913481)
+- [상속과 조합, 좋은 객체의 7가지 덕목](https://nauni.tistory.com/165?category=913481)
+- [상속, 조합, 인터페이스](https://nauni.tistory.com/167?category=913481)
+- [객체지향 SOLID](https://nauni.tistory.com/172?category=913481)
+- [상태패턴](https://nauni.tistory.com/187?category=913481)
 
 # 미션 진행기간
 
